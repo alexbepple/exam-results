@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import cqrs.CommandBus;
-import exam.BestResultRepository;
-import exam.CreateExamResultCommand;
+import domain.exam.result.best.BestResultRepository;
+import domain.exam.result.new_result.CreateExamResultCommand;
 
 @Controller
 public class ExamResultController {

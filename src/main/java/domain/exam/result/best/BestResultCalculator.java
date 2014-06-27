@@ -1,6 +1,7 @@
-package exam;
+package domain.exam.result.best;
 
 import cqrs.EventHandler;
+import domain.exam.result.new_result.ExamResultCreatedEvent;
 
 public class BestResultCalculator implements EventHandler {
 

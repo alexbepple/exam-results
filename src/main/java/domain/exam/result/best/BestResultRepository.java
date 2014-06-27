@@ -1,4 +1,4 @@
-package exam;
+package domain.exam.result.best;
 
 public class BestResultRepository {
 	

@@ -8,9 +8,9 @@ import org.springframework.context.annotation.ComponentScan;
 import cqrs.CommandBus;
 import cqrs.EventBus;
 import cqrs.SimpleEventBus;
-import exam.BestResultCalculator;
-import exam.CreateExamResultCommand;
-import exam.ExamResultCreatedEvent;
+import domain.exam.result.best.BestResultCalculator;
+import domain.exam.result.new_result.CreateExamResultCommand;
+import domain.exam.result.new_result.ExamResultCreatedEvent;
 
 @EnableAutoConfiguration
 @ComponentScan

@@ -3,7 +3,7 @@ package cqrs;
 import java.util.ArrayList;
 import java.util.List;
 
-import exam.ExamResultCreatedEvent;
+import domain.exam.result.new_result.ExamResultCreatedEvent;
 
 public class SimpleEventBus implements EventBus {
 

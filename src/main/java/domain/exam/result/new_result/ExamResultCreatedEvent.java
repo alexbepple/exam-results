@@ -1,12 +1,11 @@
-package exam;
+package domain.exam.result.new_result;
 
+public class ExamResultCreatedEvent {
 
-public class CreateExamResultCommand {
-
-    private final String student;
+	private final String student;
 	private final Integer points;
 	
-	public CreateExamResultCommand(String student, Integer points) {
+	public ExamResultCreatedEvent(String student, Integer points) {
 		this.student = student;
 		this.points = points;
 	}
@@ -18,4 +17,5 @@ public class CreateExamResultCommand {
 	public Integer getPoints() {
 		return points;
 	}
+
 }

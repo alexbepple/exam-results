@@ -1,6 +1,6 @@
 package cqrs;
 
-import exam.CreateExamResultCommand;
+import domain.exam.result.new_result.CreateExamResultCommand;
 
 public interface CommandBus {
 
