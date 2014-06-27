@@ -15,6 +15,9 @@ public class ExamResultController {
 	@Autowired
 	private CommandBus commandBus;
 	
+	@Autowired
+	private BestResultRepository bestResultRepository;
+	
     @RequestMapping("/add")
     public String addExamResult(
     		@RequestParam(value = "student") String student,
@@ -28,7 +31,7 @@ public class ExamResultController {
     
     @RequestMapping("/best")
     public String bestExamResult(Model model) {
-    	model.addAttribute("best", BestResultRepository.bestResult);
+    	model.addAttribute("best", bestResultRepository.getBestResult());
     	return "best";
     }
 }

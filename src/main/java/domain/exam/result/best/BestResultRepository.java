@@ -2,6 +2,14 @@ package domain.exam.result.best;
 
 public class BestResultRepository {
 	
-	public static Integer bestResult = 0;
+	private Integer bestResult = 0;
+
+	public Integer getBestResult() {
+		return bestResult;
+	}
+
+	public void setBestResult(Integer bestResult) {
+		this.bestResult = bestResult;
+	}
 
 }

@@ -9,6 +9,7 @@ import cqrs.CommandBus;
 import cqrs.EventBus;
 import cqrs.SimpleEventBus;
 import domain.exam.result.best.BestResultCalculator;
+import domain.exam.result.best.BestResultRepository;
 import domain.exam.result.new_result.CreateExamResultCommand;
 import domain.exam.result.new_result.ExamResultCreatedEvent;
 
@@ -18,10 +19,14 @@ public class Application {
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
+    
+    @Bean BestResultRepository bestResultRepository() {
+    	return new BestResultRepository();
+    }
 
-	@Bean CommandBus commandGateway() {
+	@Bean CommandBus commandBus(BestResultRepository bestResultRepository) {
 		final EventBus eventBus = new SimpleEventBus();
-        eventBus.subscribe(ExamResultCreatedEvent.class, new BestResultCalculator());
+        eventBus.subscribe(ExamResultCreatedEvent.class, new BestResultCalculator(bestResultRepository));
    
         return new CommandBus() {
 			
