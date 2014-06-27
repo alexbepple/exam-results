@@ -1,0 +1,15 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    <title>All exam results</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<ul>
+    <li th:each="examResult : ${examResults}">
+        <span th:text="${examResult.student}">Student name</span>:
+        <span th:text="${examResult.points}">5</span>
+    </li>
+</ul>
+</body>
+</html>

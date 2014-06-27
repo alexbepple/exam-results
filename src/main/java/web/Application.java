@@ -14,6 +14,7 @@ import domain.exam.result.best.BestResultRepository;
 import domain.exam.result.new_result.CreateExamResultCommand;
 import domain.exam.result.new_result.CreateExamResultCommandHandler;
 import domain.exam.result.new_result.ExamResultCreatedEvent;
+import domain.exam.result.save.ExamResultsRepository;
 
 @EnableAutoConfiguration
 @ComponentScan
@@ -26,9 +27,14 @@ public class Application {
     	return new BestResultRepository();
     }
 
-	@Bean CommandBus commandBus(BestResultRepository bestResultRepository) {
-		final EventBus eventBus = new SimpleEventBus();
+    @Bean ExamResultsRepository examResultsRepository() {
+    	return new ExamResultsRepository();
+    }
+    
+	@Bean CommandBus commandBus(BestResultRepository bestResultRepository, ExamResultsRepository examResultsRepository) {
+		EventBus eventBus = new SimpleEventBus();
         eventBus.subscribe(ExamResultCreatedEvent.class, new BestResultCalculator(bestResultRepository));
+        // ExamResultPersister(examResultsRepository)
         
         CommandBus commandBus = new SimpleCommandBus(eventBus);
         commandBus.register(CreateExamResultCommand.class, new CreateExamResultCommandHandler());
