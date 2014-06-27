@@ -7,10 +7,12 @@ import org.springframework.context.annotation.ComponentScan;
 
 import cqrs.CommandBus;
 import cqrs.EventBus;
+import cqrs.SimpleCommandBus;
 import cqrs.SimpleEventBus;
 import domain.exam.result.best.BestResultCalculator;
 import domain.exam.result.best.BestResultRepository;
 import domain.exam.result.new_result.CreateExamResultCommand;
+import domain.exam.result.new_result.CreateExamResultCommandHandler;
 import domain.exam.result.new_result.ExamResultCreatedEvent;
 
 @EnableAutoConfiguration
@@ -27,14 +29,11 @@ public class Application {
 	@Bean CommandBus commandBus(BestResultRepository bestResultRepository) {
 		final EventBus eventBus = new SimpleEventBus();
         eventBus.subscribe(ExamResultCreatedEvent.class, new BestResultCalculator(bestResultRepository));
-   
-        return new CommandBus() {
-			
-			@Override
-			public void handle(CreateExamResultCommand command) {
-				eventBus.announce(new ExamResultCreatedEvent(command.getStudent(), command.getPoints()));
-			}
-		};
+        
+        CommandBus commandBus = new SimpleCommandBus(eventBus);
+        commandBus.register(CreateExamResultCommand.class, new CreateExamResultCommandHandler());
+        
+        return commandBus;
 	}
 
 }
